@@ -135,6 +135,7 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+
         mDatabaseRef.child(current_userId).child("online").setValue(true);
 
         mChat.child(current_userId).addValueEventListener(new ValueEventListener() {
