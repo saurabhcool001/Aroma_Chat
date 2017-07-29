@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.example.saurabh.aroma.SettingActivity">
+
+    <include
+        android:id="@+id/activity_appBar"
+        layout="@layout/app_bar_layout" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/setting_image"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="24dp"
+        android:adjustViewBounds="false"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/user_image_transparent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_appBar" />
+
+    <TextView
+        android:id="@+id/setting_display_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Display Name"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_image" />
+
+    <TextView
+        android:id="@+id/setting_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Hi! there, I'm using Aroma chat app"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_display_name" />
+
+    <Button
+        android:id="@+id/setting_image_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/white"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Change Image"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/setting_status_btn"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/setting_status_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:background="@color/colorAccent"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="Change Status"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
