@@ -36,7 +36,6 @@ public class StartActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 9001;
 
 //    private SignInButton mSignInButton;
-//
 //    private GoogleApiClient mGoogleApiClient;
 
     // Firebase instance variables
