@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,17 +11,28 @@
         android:id="@+id/chat_app_bar"
         layout="@layout/app_bar_layout" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/messageRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/chat_app_bar"
+        android:layout_above="@+id/linearLayout" />
+
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
 
         <ImageButton
-            android:id="@+id/chat_addBtn"
+            android:id="@+id/addMessageImageView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0.07"
@@ -29,7 +40,7 @@
             app:srcCompat="@mipmap/ic_add_white_24dp" />
 
         <EditText
-            android:id="@+id/chat_message_input"
+            android:id="@+id/messageEditText"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0.16"
@@ -40,11 +51,18 @@
             android:paddingLeft="5dp" />
 
         <ImageButton
-            android:id="@+id/chat_sendBtn"
+            android:id="@+id/sendButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@color/colorPrimaryDark"
             app:srcCompat="@mipmap/ic_send" />
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>

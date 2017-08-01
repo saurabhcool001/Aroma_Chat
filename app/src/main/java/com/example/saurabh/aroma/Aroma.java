@@ -24,7 +24,7 @@ public class Aroma extends Application {
 
     private FirebaseDatabase Database;
     private DatabaseReference mUserDatabase;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuthUser;
     private String current_UserId;
 
     @Override
@@ -35,8 +35,8 @@ public class Aroma extends Application {
         FirebaseApp.initializeApp(context);
 
         Database = FirebaseDatabase.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-        current_UserId = mAuth.getCurrentUser().getUid();
+        mAuthUser = FirebaseAuth.getInstance();
+        current_UserId = mAuthUser.getCurrentUser().getUid();
         mUserDatabase = Database.getReference().child("Users").child(current_UserId);
 
         //FirebaseDatabase.getInstance().setPersistenceEnabled(true);

@@ -56,28 +56,28 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout = (TabLayout) findViewById(R.id.main_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-
-                    // User is signed in
-                    Log.d(Tag, "onAuthStateChanged:signed_in:" + user.getUid());
-                    current_userId = mAuth.getCurrentUser().getUid();
-                    Database = FirebaseDatabase.getInstance();
-                    mUserRef = Database.getReference().child("Users").child(current_userId);
-                    mUserRef.child("online").setValue(true);
-
-                } else if (user == null) {
-                    // User is signed out
-                    Log.d(Tag, "onAuthStateChanged:signed_out");
-
-                    sendToStart();
-
-                }
-            }
-        };
+//        mAuthListener = new FirebaseAuth.AuthStateListener() {
+//        @Override
+//        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//            FirebaseUser user = firebaseAuth.getCurrentUser();
+//            if (user != null) {
+//
+//                // User is signed in
+//                Log.d(Tag, "onAuthStateChanged:signed_in:" + user.getUid());
+//                current_userId = mAuth.getCurrentUser().getUid();
+//                Database = FirebaseDatabase.getInstance();
+//                mUserRef = Database.getReference().child("Users").child(current_userId);
+//                mUserRef.child("online").setValue(true);
+//
+//            } else if (user == null) {
+//                // User is signed out
+//                Log.d(Tag, "onAuthStateChanged:signed_out");
+//
+//                sendToStart();
+//
+//            }
+//        }
+//    };
     }
 
     private void sendToStart() {
@@ -90,7 +90,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+        //mAuth.addAuthStateListener(mAuthListener);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+
+            // User is signed in
+            Log.d(Tag, "onAuthStateChanged:signed_in:" + user.getUid());
+            current_userId = mAuth.getCurrentUser().getUid();
+            Database = FirebaseDatabase.getInstance();
+            mUserRef = Database.getReference().child("Users").child(current_userId);
+            mUserRef.child("online").setValue(true);
+
+        } else {
+            // User is signed out
+            Log.d(Tag, "onAuthStateChanged:signed_out");
+
+            sendToStart();
+
+        }
     }
 
     @Override
