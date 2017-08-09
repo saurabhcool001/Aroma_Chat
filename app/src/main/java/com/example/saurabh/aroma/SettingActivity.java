@@ -54,7 +54,7 @@ public class SettingActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mCurrentUser;
     private FirebaseDatabase Database = FirebaseDatabase.getInstance();
-    private DatabaseReference mDatabaseRef;
+    private DatabaseReference mDatabaseRef, mFriendDatabase;
     private FirebaseStorage storage = FirebaseStorage.getInstance();
     private StorageReference mStorageRef;
     private String current_userId;
@@ -62,6 +62,7 @@ public class SettingActivity extends AppCompatActivity {
     private CircleImageView mDisplayImage;
     private TextView mName;
     private TextView mStatus;
+    private TextView mUserTotalFriend;
     private Button mSettingImageBtn;
     private Button mSettingStatusBtn;
     private Uri mImageUri = null;
@@ -86,6 +87,7 @@ public class SettingActivity extends AppCompatActivity {
         uid = mCurrentUser.getUid();
         mDatabaseRef = Database.getReference().child("Users").child(uid);
         mStorageRef = storage.getReference().child("Profile_Images");
+        mFriendDatabase = Database.getReference().child("Friends").child(uid);
         mDatabaseRef.keepSynced(true);
 
         mName = (TextView) findViewById(R.id.setting_display_name);
@@ -93,6 +95,7 @@ public class SettingActivity extends AppCompatActivity {
         mStatus = (TextView) findViewById(R.id.setting_status);
         mSettingImageBtn = (Button) findViewById(R.id.setting_image_btn);
         mSettingStatusBtn = (Button) findViewById(R.id.setting_status_btn);
+        mUserTotalFriend = (TextView) findViewById(R.id.userTotalFriend);
 
         mProgress = new ProgressDialog(this);
 
@@ -130,6 +133,23 @@ public class SettingActivity extends AppCompatActivity {
                     });
 
                 }
+
+                mFriendDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        final int totalFriendCount = (int) dataSnapshot.getChildrenCount();
+                        if (totalFriendCount == 0) {
+
+                        }else {
+                            mUserTotalFriend.setText("Total Friends : " + totalFriendCount);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
 
             @Override

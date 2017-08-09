@@ -6,8 +6,10 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 //import com.google.android.gms.auth.api.Auth;
@@ -80,7 +82,7 @@ public class StartActivity extends AppCompatActivity {
 
                 Intent registerIntent = new Intent(StartActivity.this, RegisterActivity.class);
                 startActivity(registerIntent);
-                finish();
+                //finish();
 
             }
         });
@@ -91,7 +93,7 @@ public class StartActivity extends AppCompatActivity {
 
                 Intent loginIntent = new Intent(StartActivity.this, LoginActivity.class);
                 startActivity(loginIntent);
-                finish();
+                //finish();
 
             }
         });

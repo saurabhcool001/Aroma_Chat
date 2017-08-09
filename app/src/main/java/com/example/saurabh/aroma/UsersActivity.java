@@ -38,6 +38,8 @@ public class UsersActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseRef, mUserRef;
     private String current_userId;
 
+    private TextView mUserSingleName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,8 @@ public class UsersActivity extends AppCompatActivity {
         mUserRecyclerList.setHasFixedSize(true);
         mUserRecyclerList.setLayoutManager(new LinearLayoutManager(this));
         mDatabaseRef.keepSynced(true);
+
+        mUserSingleName = (TextView) findViewById(R.id.user_single_name);
 
         mUserRef.child("online").setValue(true);
     }
@@ -86,21 +90,29 @@ public class UsersActivity extends AppCompatActivity {
                     @Override
                     protected void populateViewHolder(UsersViewHolder viewHolder, Users model, int position) {
 
-                        viewHolder.setName(model.getName());
-                        viewHolder.setStatus(model.getStatus());
-                        //viewHolder.setImage(getApplicationContext(), model.getImage());
-                        viewHolder.setImage(getApplicationContext(), model.getThumb_image());
-
                         final String user_id = getRef(position).getKey();
 
-                        viewHolder.mView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent profileIntent = new Intent(UsersActivity.this, ProfileActivity.class);
-                                profileIntent.putExtra("user_id", user_id);
-                                startActivity(profileIntent);
-                            }
-                        });
+                        if (user_id.equals(current_userId)) {
+
+//                            viewHolder.setName("");
+//                            viewHolder.setStatus("");
+                        } else {
+                            viewHolder.setName(model.getName());
+                            viewHolder.setStatus(model.getStatus());
+                            //viewHolder.setImage(getApplicationContext(), model.getImage());
+                            viewHolder.setImage(getApplicationContext(), model.getThumb_image());
+
+                            //final String user_id = getRef(position).getKey();
+
+                            viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent profileIntent = new Intent(UsersActivity.this, ProfileActivity.class);
+                                    profileIntent.putExtra("user_id", user_id);
+                                    startActivity(profileIntent);
+                                }
+                            });
+                        }
                     }
                 };
 

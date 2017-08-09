@@ -50,20 +50,23 @@ public class Aroma extends Application {
         built.setLoggingEnabled(true);
         Picasso.setSingletonInstance(built);
 
-        mUserDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null) {
-                    //mUserDatabase.child("online").onDisconnect().setValue(false);
-                    mUserDatabase.child("online").onDisconnect().setValue(ServerValue.TIMESTAMP);
-                    //mUserDatabase.child("lastSeen").setValue(ServerValue.TIMESTAMP);
+        if (mAuthUser.getCurrentUser() != null) {
+
+            mUserDatabase.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot != null) {
+                        //mUserDatabase.child("online").onDisconnect().setValue(false);
+                        mUserDatabase.child("online").onDisconnect().setValue(ServerValue.TIMESTAMP);
+                        //mUserDatabase.child("lastSeen").setValue(ServerValue.TIMESTAMP);
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        }
     }
 }

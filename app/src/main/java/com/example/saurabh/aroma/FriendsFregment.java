@@ -115,33 +115,39 @@ public class FriendsFregment extends Fragment {
                                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                                                                         @Override
                                                                         public void onClick(View v) {
-                                                                            //Toast.makeText(context, "val : " + getRef(position).getKey(), Toast.LENGTH_SHORT).show();
                                                                             CharSequence options[] = new CharSequence[]{"Open Profile", "Send Message"};
-                                                                            final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                                                            builder.setTitle("Select Option");
-                                                                            builder.setItems(options, new DialogInterface.OnClickListener() {
-                                                                                @Override
-                                                                                public void onClick(DialogInterface dialog, int which) {
-                                                                                    //Click Event
-                                                                                    switch (which) {
-                                                                                        case 0:
-                                                                                            Intent profileIntent = new Intent(getContext(), ProfileActivity.class);
-                                                                                            profileIntent.putExtra("user_id", list_user_id);
-                                                                                            startActivity(profileIntent);
-                                                                                            break;
-                                                                                        case 1:
-                                                                                            Intent chatIntent = new Intent(getContext(), ChatActivity.class);
-                                                                                            Bundle bundle = new Bundle();
-                                                                                            bundle.putString("user_id", list_user_id);
-                                                                                            bundle.putString("userName", userName);
-                                                                                            chatIntent.putExtras(bundle);
-                                                                                            startActivity(chatIntent);
-                                                                                            break;
+                                                                            Intent chatIntent = new Intent(getContext(), ChatActivity.class);
+                                                                            Bundle bundle = new Bundle();
+                                                                            bundle.putString("user_id", list_user_id);
+                                                                            bundle.putString("userName", userName);
+                                                                            chatIntent.putExtras(bundle);
+                                                                            startActivity(chatIntent);
 
-                                                                                    }
-                                                                                }
-                                                                            });
-                                                                            builder.show();
+//                                                                            final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//                                                                            builder.setTitle("Select Option");
+//                                                                            builder.setItems(options, new DialogInterface.OnClickListener() {
+//                                                                                @Override
+//                                                                                public void onClick(DialogInterface dialog, int which) {
+//                                                                                    //Click Event
+//                                                                                    switch (which) {
+//                                                                                        case 0:
+//                                                                                            Intent profileIntent = new Intent(getContext(), ProfileActivity.class);
+//                                                                                            profileIntent.putExtra("user_id", list_user_id);
+//                                                                                            startActivity(profileIntent);
+//                                                                                            break;
+//                                                                                        case 1:
+//                                                                                            Intent chatIntent = new Intent(getContext(), ChatActivity.class);
+//                                                                                            Bundle bundle = new Bundle();
+//                                                                                            bundle.putString("user_id", list_user_id);
+//                                                                                            bundle.putString("userName", userName);
+//                                                                                            chatIntent.putExtras(bundle);
+//                                                                                            startActivity(chatIntent);
+//                                                                                            break;
+//
+//                                                                                    }
+//                                                                                }
+//                                                                            });
+//                                                                            builder.show();
                                                                         }
                                                                     }
                                 );
